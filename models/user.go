@@ -5,6 +5,7 @@ import (
 	"fmt"
 )
 
+// Create User Model
 type User struct {
 	ID int
 	FirstName, LastName string
@@ -15,9 +16,11 @@ var (
 	nextID  = 1
 )
 
+// This Function get all Users
 func GetUsers() []*User {
 	return users
 }
+
 
 func AddUser(u User) (User, error) {
 	if u.ID != 0 {
@@ -35,7 +38,7 @@ func GetUserByID(id int) (User, error) {
 			return *u, nil
 		}
 	}
-	return User{}, fmt.Errorf("User with ID '%v' not found", u.ID)
+	return User{}, fmt.Errorf("User with ID '%v' not found", id)
 }
 
 func UpdateUser(u User) (User, error) {
@@ -52,7 +55,7 @@ func RemoveUserById(id int) error {
 	for i, u := range users {
 		if u.ID == id {
 			users  = append(users[:i], users[i + 1:] ...)
-			return nill
+			return nil
 		}
 	}
 	return fmt.Errorf("User with ID '%v' not found", id)
